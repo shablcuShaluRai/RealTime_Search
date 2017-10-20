@@ -1,12 +1,18 @@
 
 # Clone OR Download App
     git clone https://github.com/shalurai/RealTime_Search
+
     cd RealTime_Search
+
     npm install
+
     npm start
-  OR
-    yarn install
-    yarn start
+
+ OR
+
+  yarn install
+   
+  yarn start
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
