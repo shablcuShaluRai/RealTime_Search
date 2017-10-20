@@ -1,37 +1,33 @@
 import React, { Component } from 'react';
-
+import escapeRegExp from 'escape-string-regexp'
+import * as DataApi from './Data'
 
 
 class App extends Component {
 
    state = {
-     data:
-     {
-           "reggae": [
-           "The Abyssinians",
-           "The Aces",
-           "Glen Adams",
-           "Admiral T",
-           "Yasus Afari",
-           "African Brothers",
-           "The Aggrovators",
-           "Aisha",
-           "Bobby Aitken",
-           "Laurel Aitken",
-           "Alaine",
-           "Alborosie"
-         ]
-     }
-
+     query:'',
+     data:[]
 }
+
+componentDidMount(){
+  console.log("DataApi",DataApi.Reggae);
+  const data = DataApi.Reggae;
+  this.setState({data:data})
+}
+
   render() {
+
+    let data = this.state.data?this.state.data:[]
+      console.log("data",data);
+
     return (
       <div className="App">
         <h1>React search</h1>
         <p>here is a list of people rendered from a json object </p>
-        {this.state.data.reggae.map(data => <li>{data}</li>
-        )}
-
+      {
+        data.map(newData => <li>{ newData }</li>)
+      }
       </div>
     );
   }
