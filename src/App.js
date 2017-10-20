@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp'
-//import * as DataApi from './api'
-
-export async function fetchData() {
-  let url = 'https://gist.githubusercontent.com/shalurai/942783a364a260c66d877a0ce957afc5/raw/4ac6ce02f2ab7c4087dc42b4d507b559bb21415b/Data.json';
-  let response = await fetch(url);
- let body = await response.json();
- let bodyData = await body.Reggae;
-  console.log("body", bodyData);
-  return bodyData;
-
-}
+import * as DataApi from './api'
 
 export default class App extends Component {
 
@@ -21,8 +11,7 @@ export default class App extends Component {
 
 
 componentDidMount =() => {
- //DataApi.fetchData().then(data => this.setState({data}))
- fetchData().then(data => this.setState({data}))
+ DataApi.fetchData().then(data => this.setState({data}))
 }
 
 updateQuery = (query) =>{
@@ -51,20 +40,29 @@ updateQuery = (query) =>{
       }
 
     return (
-      <div className="App">
+            <div>
+      <div className="header">
         <h1>React search</h1>
-        <p>here is a list of people rendered from a json object </p>
+        <p>Here is a list of people rendered from a json object using Async function </p>
+        </div>
+       <div className='input'>
+       <h3>Search</h3>
         <input
+        className ="search"
          type='text'
          placeholder='Search People'
          value={query}
          onChange={(event) => this.updateQuery(event.target.value)}
         />
+        </div>
+        <ul>
         {
           showingPeople.map((newData, index) =>
           <li key={index}>{ newData }</li>
           )
+
         }
+        </ul>
       </div>
     );
   }
